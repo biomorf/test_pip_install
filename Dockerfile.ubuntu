@@ -1,0 +1,91 @@
+FROM ubuntu:jammy AS vagrant_dind_systemd
+LABEL MAINTAINER="John Rofrano <rofrano@gmail.com>"
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN echo 'Acquire::http::Proxy "http://10.0.2.2:8000";' \
+  | tee  /etc/apt/apt.conf.d/01deb-proxy
+
+# Install packages needed for SSH and interactive OS
+RUN apt-get update && \
+    yes | unminimize && \
+    apt-get -y install \
+        openssh-server \
+        passwd \
+        sudo \
+        man-db \
+        curl \
+        wget \
+        vim-tiny && \
+    apt-get -qq clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Enable systemd (from Matthew Warman's mcwarman/vagrant-provider)
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+    rm -f /lib/systemd/system/multi-user.target.wants/*; \
+    rm -f /etc/systemd/system/*.wants/*; \
+    rm -f /lib/systemd/system/local-fs.target.wants/*; \
+    rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+    rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+    rm -f /lib/systemd/system/basic.target.wants/*; \
+    rm -f /lib/systemd/system/anaconda.target.wants/*;
+
+# Enable ssh for vagrant
+RUN systemctl enable ssh.service; 
+EXPOSE 22
+
+# Create the vagrant user
+RUN useradd -m -G sudo -s /bin/bash vagrant && \
+    echo "vagrant:vagrant" | chpasswd && \
+    echo 'vagrant ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/vagrant && \
+    chmod 440 /etc/sudoers.d/vagrant
+
+# Establish ssh keys for vagrant
+RUN mkdir -p /home/vagrant/.ssh; \
+    chmod 700 /home/vagrant/.ssh
+ADD https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub /home/vagrant/.ssh/authorized_keys
+RUN chmod 600 /home/vagrant/.ssh/authorized_keys; \
+    chown -R vagrant:vagrant /home/vagrant/.ssh
+
+# Run the init daemon
+VOLUME [ "/sys/fs/cgroup" ]
+CMD ["/usr/sbin/init"]
+
+
+FROM vagrant_dind_systemd AS dock
+
+RUN apt-get update && \
+    apt-get -y install \
+        iproute2 \
+        inetutils-ping \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release \
+        && \
+    apt-get -qq clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Adds docker apt key
+RUN mkdir -p /etc/apt/keyrings && \
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+  chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Adds docker apt repository
+RUN echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Refreshes apt repos
+# Installs Docker CE
+RUN apt-get update && \
+  apt-get install --yes \
+  docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+    && \
+    apt-get -qq clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN groupadd --system --force docker \
+  && usermod --append --groups docker vagrant
+
