@@ -1,0 +1,9 @@
+[user]
+	email = j@jlacroix.me
+	name = Jay LaCroix
+[safe]
+# git config --global --add safe.directory /home/jay/.tmux/plugins/continuum
+	directory = /home/jay/.tmux/plugins/completion
+	directory = /home/jay/.tmux/plugins/continuum
+	directory = /home/jay/.tmux/plugins/tmux-resurrect
+

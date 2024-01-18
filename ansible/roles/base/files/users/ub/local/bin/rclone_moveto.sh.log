@@ -1,0 +1,275 @@
+Usage:
+  rclone move source:path dest:path [flags]
+
+Flags:
+      --create-empty-src-dirs   Create empty source dirs on destination after move
+      --delete-empty-src-dirs   Delete empty source dirs after move
+  -h, --help                    help for move
+
+Use "rclone [command] --help" for more information about a command.
+Use "rclone help flags" for to see the global flags.
+Use "rclone help backends" for a list of supported services.
+Command move needs 2 arguments minimum: you provided 0 non flag arguments: []
+Usage:
+  rclone move source:path dest:path [flags]
+
+Flags:
+      --create-empty-src-dirs   Create empty source dirs on destination after move
+      --delete-empty-src-dirs   Delete empty source dirs after move
+  -h, --help                    help for move
+
+Use "rclone [command] --help" for more information about a command.
+Use "rclone help flags" for to see the global flags.
+Use "rclone help backends" for a list of supported services.
+Command move needs 2 arguments minimum: you provided 0 non flag arguments: []
+2022/05/27 03:08:08 INFO  : f/a.txt: Deleted
+2022/05/27 03:08:08 INFO  : There was nothing to transfer
+2022/05/27 03:08:08 INFO  : 
+Transferred:   	          0 B / 0 B, -, 0 B/s, ETA -
+Checks:                 2 / 2, 100%
+Deleted:                1 (files), 0 (dirs)
+Elapsed time:         3.2s
+
+2022/05/27 03:17:06 INFO  : f: Removing directory
+2022/05/27 03:17:07 INFO  : There was nothing to transfer
+2022/05/27 03:17:07 INFO  : 
+Transferred:   	          0 B / 0 B, -, 0 B/s, ETA -
+Deleted:                0 (files), 1 (dirs)
+Elapsed time:         7.6s
+
+2022/05/27 03:21:54 INFO  : sed/sample1.txt: Deleted
+2022/05/27 03:21:54 INFO  : sed/old: Deleted
+2022/05/27 03:21:54 INFO  : sed/BSD: Deleted
+2022/05/27 03:21:54 INFO  : sed/new: Deleted
+2022/05/27 03:21:56 INFO  : awk/awk_01.sh: Copied (new)
+2022/05/27 03:21:56 INFO  : awk/awk_01.sh: Deleted
+2022/05/27 03:21:57 INFO  : xargs.sh: Copied (new)
+2022/05/27 03:21:57 INFO  : xargs.sh: Deleted
+2022/05/27 03:21:57 INFO  : read.sh: Copied (new)
+2022/05/27 03:21:57 INFO  : read.sh: Deleted
+2022/05/27 03:21:57 INFO  : awk/awk_commands01.sh: Copied (new)
+2022/05/27 03:21:57 INFO  : awk/awk_commands01.sh: Deleted
+2022/05/27 03:21:58 INFO  : awk/awk_commands02.sh: Copied (new)
+2022/05/27 03:21:58 INFO  : awk/awk_commands02.sh: Deleted
+2022/05/27 03:21:58 INFO  : awk/awk_commands03.sh: Copied (new)
+2022/05/27 03:21:58 INFO  : awk/awk_dynvar.sh: Copied (new)
+2022/05/27 03:21:58 INFO  : awk/awk_commands03.sh: Deleted
+2022/05/27 03:21:58 INFO  : awk/awk_dynvar.sh: Deleted
+2022/05/27 03:21:59 INFO  : awk/awk_script.awk: Copied (new)
+2022/05/27 03:21:59 INFO  : awk/awk_script.awk: Deleted
+2022/05/27 03:22:00 INFO  : awk/awk_vars.sh: Copied (new)
+2022/05/27 03:22:00 INFO  : awk/awk_vars.sh: Deleted
+2022/05/27 03:22:00 INFO  : awk/awk_script.sh: Copied (new)
+2022/05/27 03:22:00 INFO  : awk/awk_script.sh: Deleted
+2022/05/27 03:22:00 INFO  : awk/employee: Copied (new)
+2022/05/27 03:22:00 INFO  : awk/employee: Deleted
+2022/05/27 03:22:01 INFO  : awk/awk_script.csh: Copied (new)
+2022/05/27 03:22:01 INFO  : awk/awk_script.csh: Deleted
+2022/05/27 03:22:02 INFO  : awk/nano.10265.save: Copied (new)
+2022/05/27 03:22:02 INFO  : awk/nano.10265.save: Deleted
+2022/05/27 03:22:02 INFO  : awk/nano.13860.save: Copied (new)
+2022/05/27 03:22:02 INFO  : awk/nano.13860.save: Deleted
+2022/05/27 03:22:02 INFO  : awk/favorite_food.txt: Copied (new)
+2022/05/27 03:22:02 INFO  : awk/favorite_food.txt: Deleted
+2022/05/27 03:22:03 INFO  : sed/sed_01.sh: Copied (new)
+2022/05/27 03:22:03 INFO  : sed/sed_01.sh: Deleted
+2022/05/27 03:22:03 INFO  : sed/sed_pattern_flags.sh: Copied (new)
+2022/05/27 03:22:04 INFO  : sed/sed_pattern_flags.sh: Deleted
+2022/05/27 03:22:04 INFO  : sed: Removing directory
+2022/05/27 03:22:04 INFO  : awk: Removing directory
+2022/05/27 03:22:04 INFO  : 
+Transferred:   	    7.134 KiB / 7.134 KiB, 100%, 811 B/s, ETA 0s
+Checks:                42 / 42, 100%
+Deleted:               21 (files), 2 (dirs)
+Renamed:               17
+Transferred:           17 / 17, 100%
+Elapsed time:        17.2s
+
+2022/05/27 03:25:33 INFO  : gateway.sh: Deleted
+2022/05/27 03:25:33 INFO  : gateway_v2.sh: Deleted
+2022/05/27 03:25:33 INFO  : network_interfaces.sh: Deleted
+2022/05/27 03:25:33 INFO  : nfs.sh: Deleted
+2022/05/27 03:25:33 INFO  : hostname.sh: Deleted
+2022/05/27 03:25:33 INFO  : rsync.sh: Deleted
+2022/05/27 03:25:33 INFO  : dns.sh: Deleted
+2022/05/27 03:25:33 INFO  : sshfs.sh: Deleted
+2022/05/27 03:25:33 INFO  : samba.sh: Deleted
+2022/05/27 03:25:33 INFO  : static_ip_assignment.sh: Deleted
+2022/05/27 03:25:33 INFO  : ntp.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile._default: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.config.push: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.config.vagrant: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.config.vm.network: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.config.vm.synced_folder: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.config.vm: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provider: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provider.docker: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provider.libvirt: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provider.vbox: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provision.ansible: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provision: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provision.file: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.style: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provision.shell: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/q: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/vagrant_.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/vagrant_box.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/vagrant_info.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provision.docker: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/vagrant_init.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/bootstrap.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/vagrant_up.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.provider.docker.network: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/vagrant_libvirt_test_box.sh: Deleted
+2022/05/27 03:25:33 INFO  : vagrant/Vagrantfile.multimachine: Deleted
+2022/05/27 03:25:33 INFO  : docker/get-docker.sh: Deleted
+2022/05/27 03:25:33 INFO  : docker/run.sh: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start2/Vagrantfile: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start2/bootstrap.sh: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start/Vagrantfile: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start/foo: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start/bootstrap.sh: Deleted
+2022/05/27 03:25:34 INFO  : dns_bind9.sh: Moved (server-side)
+2022/05/27 03:25:34 INFO  : vagrant/.vagrant/rgloader/loader.rb: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start/html/index.html: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/mongodb/app.py: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/mongodb/storage.py: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/COMMIT_EDITMSG: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/HEAD: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/config: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/description: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/index: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/packed-refs: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/web-hello-world/Dockerfile: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/web-hello-world/start.sh: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/web-hello-world/requirements.txt: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/web-hello-world/app.py: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/1_hello-world/Dockerfile: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/1_hello-world/app.py: Deleted
+2022/05/27 03:25:34 INFO  : isc-dhcp-server.sh: Moved (server-side)
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start2/data/html/index.html: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start/.vagrant/bundler/global.sol: Deleted
+2022/05/27 03:25:34 INFO  : vagrant/vagrant_start/.vagrant/rgloader/loader.rb: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/info/exclude: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/applypatch-msg.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/pre-applypatch.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/commit-msg.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/pre-commit.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/pre-merge-commit.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/fsmonitor-watchman.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/post-update.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/pre-push.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/pre-rebase.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/pre-receive.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/prepare-commit-msg.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/push-to-checkout.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/hooks/update.sample: Deleted
+2022/05/27 03:25:34 INFO  : docker/YT-Docker-lesson/.git/logs/HEAD: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/web-hello-world/resources/response.json: Deleted
+2022/05/27 03:25:35 INFO  : static_ip_assignment_02.sh: Copied (new)
+2022/05/27 03:25:35 INFO  : static_ip_assignment_02.sh: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/80/66e3c39a55eb8aafc6b246b9fc4491a3371baf: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/74/325018a0116d1e33cca15c3912d1bb77566543: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/01/5bb4094bbde4389c319e0328d327c43811cc5c: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/8b/903712374997559c5d38229ed3058abc5313b5: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/9b/85400ca5b179c08b761895b93ea2cd2f184b2b: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/c5/caa8fe4bde20ec0bd70cedddbf7ee5263153f1: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/b6/7907d5b1f2f65ad5ad7ed0ca7aaf2a1b3c1c6c: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/d1/3111208ed72a7c6daf27ad246fd2db0962d5af: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/pack/pack-30e9a7e0a568c2a5351d644a8d052a5ec441e9f2.idx: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/pack/pack-30e9a7e0a568c2a5351d644a8d052a5ec441e9f2.pack: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/refs/heads/master: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/objects/dd/952a9f7c9bb7d035ddc5277a9e5828246d6a60: Deleted
+2022/05/27 03:25:35 INFO  : docker/.Dockerfile.run.swp: Copied (new)
+2022/05/27 03:25:35 INFO  : docker/.Dockerfile.run.swp: Deleted
+2022/05/27 03:25:35 INFO  : docker/.dockerignore: Copied (new)
+2022/05/27 03:25:35 INFO  : docker/.dockerignore: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/logs/refs/heads/master: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/refs/remotes/origin/HEAD: Deleted
+2022/05/27 03:25:35 INFO  : docker/YT-Docker-lesson/.git/refs/remotes/origin/master: Deleted
+2022/05/27 03:25:36 INFO  : docker/YT-Docker-lesson/.git/logs/refs/remotes/origin/master: Deleted
+2022/05/27 03:25:36 INFO  : docker/YT-Docker-lesson/.git/logs/refs/remotes/origin/HEAD: Deleted
+2022/05/27 03:25:36 INFO  : docker/.dockerignore.example: Copied (new)
+2022/05/27 03:25:36 INFO  : docker/build.sh: Moved (server-side)
+2022/05/27 03:25:36 INFO  : docker/.dockerignore.example: Deleted
+2022/05/27 03:25:36 INFO  : docker/Dockerfile: Copied (new)
+2022/05/27 03:25:36 INFO  : docker/Dockerfile: Deleted
+2022/05/27 03:25:37 INFO  : docker/Dockerfile.arg: Copied (new)
+2022/05/27 03:25:37 INFO  : docker/Dockerfile.arg: Deleted
+2022/05/27 03:25:37 INFO  : docker/Dockerfile.multistage: Copied (new)
+2022/05/27 03:25:37 INFO  : docker/Dockerfile.multistage: Deleted
+2022/05/27 03:25:37 INFO  : docker/Dockerfile.run: Copied (new)
+2022/05/27 03:25:37 INFO  : docker/Dockerfile.run: Deleted
+2022/05/27 03:25:38 INFO  : docker/build.buildkit.sh: Copied (new)
+2022/05/27 03:25:38 INFO  : docker/build.buildkit.sh: Deleted
+2022/05/27 03:25:40 INFO  : docker/multistage/1/Dockerfile: Copied (new)
+2022/05/27 03:25:40 INFO  : docker/multistage/1/Dockerfile: Deleted
+2022/05/27 03:25:40 INFO  : docker/build.multistage.sh: Copied (new)
+2022/05/27 03:25:40 INFO  : docker/build.multistage.sh: Deleted
+2022/05/27 03:25:41 INFO  : docker/multistage/1/build.sh: Copied (new)
+2022/05/27 03:25:41 INFO  : docker/multistage/1/build.sh: Deleted
+2022/05/27 03:25:41 INFO  : docker/multistage/1/Dockerfile.split: Copied (new)
+2022/05/27 03:25:41 INFO  : docker/multistage/1/Dockerfile.split: Deleted
+2022/05/27 03:25:43 INFO  : docker/multistage/builder_pattern/Dockerfile: Copied (new)
+2022/05/27 03:25:43 INFO  : docker/multistage/builder_pattern/Dockerfile: Deleted
+2022/05/27 03:25:43 INFO  : docker/multistage/builder_pattern/build.sh: Copied (new)
+2022/05/27 03:25:43 INFO  : docker/multistage/builder_pattern/build.sh: Deleted
+2022/05/27 03:25:43 INFO  : dns_bind9.sh: Copied (new)
+2022/05/27 03:25:43 INFO  : dns_bind9.sh: Deleted
+2022/05/27 03:25:44 INFO  : docker/multistage/builder_pattern/Dockerfile.build: Copied (new)
+2022/05/27 03:25:44 INFO  : docker/multistage/builder_pattern/Dockerfile.build: Deleted
+2022/05/27 03:25:44 INFO  : isc-dhcp-server.sh: Copied (new)
+2022/05/27 03:25:44 INFO  : isc-dhcp-server.sh: Deleted
+2022/05/27 03:25:45 INFO  : docker/build.sh: Copied (new)
+2022/05/27 03:25:45 INFO  : docker/build.sh: Deleted
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start2/data/html: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start2/data: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start2: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start/html: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start/.vagrant/rgloader: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start/.vagrant/bundler: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start/.vagrant: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/vagrant_start: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/.vagrant/rgloader: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant/.vagrant: Removing directory
+2022/05/27 03:25:45 INFO  : vagrant: Removing directory
+2022/05/27 03:25:45 INFO  : docker/multistage/builder_pattern: Removing directory
+2022/05/27 03:25:45 INFO  : docker/multistage/1: Removing directory
+2022/05/27 03:25:45 INFO  : docker/multistage: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/web-hello-world/resources: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/web-hello-world: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/mongodb: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/1_hello-world: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/refs/remotes/origin: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/refs/remotes: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/refs/heads: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/refs: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/pack: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/dd: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/d1: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/c5: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/b6: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/9b: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/8b: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/80: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/74: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects/01: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/objects: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/logs/refs/remotes/origin: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/logs/refs/remotes: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/logs/refs/heads: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/logs/refs: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/logs: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/info: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git/hooks: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson/.git: Removing directory
+2022/05/27 03:25:45 INFO  : docker/YT-Docker-lesson: Removing directory
+2022/05/27 03:25:45 INFO  : docker: Removing directory
+2022/05/27 03:25:45 INFO  : 
+Transferred:   	   39.828 KiB / 39.828 KiB, 100%, 3.620 KiB/s, ETA 0s
+Checks:               236 / 236, 100%
+Deleted:              115 (files), 43 (dirs)
+Renamed:               22
+Transferred:           19 / 19, 100%
+Elapsed time:        17.1s
+

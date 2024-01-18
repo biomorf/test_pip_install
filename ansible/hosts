@@ -1,0 +1,16 @@
+[server]
+#server1.mydomain.com
+#server2.mydomain.com
+#server3.mydomain.com
+#172.30.0.10
+#192.168.122.26
+
+
+[workstation]
+#workstation1.mydomain.com
+#workstation2.mydomain.com
+#workstation3.mydomain.com
+#192.168.122.48
+192.168.122.122
+#127.0.0.1
+172.17.0.1

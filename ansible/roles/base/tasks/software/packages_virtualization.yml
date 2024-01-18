@@ -1,0 +1,129 @@
+- name: system setup | virtualization packages | install default docker-ce
+  tags: dev,virtualization,packages,docker
+  package:
+    name:
+#      - docker-ce
+#      - docker-ce-cli
+#      - containerd.io
+#      - docker-compose-plugin
+      - docker
+      - docker-buildx
+      #- docker.io
+      #- containerd
+      #- runc
+
+      #- docker-compose  ## Arch
+      #- docker-compose-v2  ## Debian
+      - "{{ docker_compose_package }}"
+        #- vim-syntax-docker  ## Debian
+    state: latest
+  notify:
+    - add_user_ub_to_docker_group
+    - docker_service_restart
+    #when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] == "22")
+
+
+- name: system setup | virtualization packages | install podman
+  tags: dev,virtualization,packages,podman
+  package:
+    name:
+      - podman
+      - skopeo
+      - crun
+      #- podman-docker
+      #- podman-compose  ## Arch
+    state: latest
+
+#- name: test
+#  tags: test
+#  ansible.builtin.lineinfile:
+#    path: /test
+#    #line: 'Acquire::http::proxy "http://192.168.122.1:8000";'
+#    line: 'A test split'
+#    create: yes
+#    owner: root
+#    group: root
+#    mode: '0644'
+
+- name: system setup | virtualization packages | install qemu (Debian os family)
+  tags: dev,virtualization,packages,qemu
+  package:
+    name:
+      - qemu-kvm
+      - bridge-utils
+      - libvirt-daemon-system
+      - libvirt-daemon
+      - libvirt-clients
+      - samba
+    state: latest
+  notify:
+    - add_user_ub_to_kvm_group
+  when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] == "22")
+
+- name: system setup | virtualization packages | install qemu (Archlinux)
+  tags: dev,virtualization,packages,qemu
+  package:
+    name:
+      - qemu
+      - bridge-utils
+      - libvirt
+      - samba
+      - manjaro-settings-samba
+    state: latest
+  notify:
+    - add_user_ub_to_kvm_group
+  when: ansible_os_family == "Archlinux"
+
+- name: system setup | virtualization packages | install vagrant
+  tags: dev,virtualization,packages,vagrant
+  package:
+    name:
+      - vagrant
+    state: latest
+  notify:
+    - add_user_ub_to_kvm_group
+  #when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] == "22")
+
+- name: system setup | virtualization packages | install vagrant
+  tags: dev,virtualization,packages,vagrant
+  package:
+    name:
+      - vagrant-libvirt
+      - vagrant-sshfs
+    state: latest
+  notify:
+    - add_user_ub_to_kvm_group
+  when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] == "22")
+
+    ### distributive repo version
+- name: system setup | virtualization packages | install virtualbox
+  tags: dev,virtualization,packages,virtualbox
+  package:
+    name:
+      - virtualbox
+        #- virtualbox-ext-pack #TODO ERROR: "User did not accept the license."
+        #- linux-headers-$(uname -r) #TODO replace bash parameter expansion
+      - virtualbox-dkms
+      - virtualbox-guest-additions-iso
+      - virtualbox-guest-utils-hwe
+      - virtualbox-guest-x11-hwe
+    state: latest
+  #notify:
+  #  - add_user_ub_to_kvm_group
+  when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] == "22")
+
+- name: system setup | virtualization packages | install virtualbox
+  tags: dev,virtualization,packages,virtualbox
+  package:
+    name:
+      - virtualbox
+        #- virtualbox-ext-pack #TODO ERROR: "User did not accept the license."
+        #- linux-headers-$(uname -r) #TODO replace bash parameter expansion
+      - virtualbox-host-dkms
+      #- linux65-virtualbox-host-modules
+      - virtualbox-guest-iso
+    state: latest
+  #notify:
+  #  - add_user_ub_to_kvm_group
+  when: ansible_os_family == "Archlinux"
+

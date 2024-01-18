@@ -1,0 +1,17 @@
+[user]
+	email = biomorf.2017@gmail.com
+	name = biomorf2017
+	signingKey = F58F991F3D740FFA4F6E1819712313E80519F4AE
+[commit]
+	gpgsign = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[safe]
+# git config --global --add safe.directory /home/ub/.tmux/plugins/continuum
+	directory = /home/ub/.tmux/plugins/completion
+	directory = /home/ub/.tmux/plugins/continuum
+	directory = /home/ub/.tmux/plugins/tmux-resurrect
+	directory = /home/ub/.vim/bundle/Vundle.vim

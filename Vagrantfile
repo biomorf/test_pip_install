@@ -5,7 +5,7 @@
 $script = <<-SCRIPT
 sudo cat > /etc/apt/apt.conf.d/01deb-proxy <<-_EOF_
 	Acquire::http::Proxy \"http://10.0.2.2:8000\";
-	#Acquire::http::Proxy \"http://172.17.0.2:3128\";        
+	#Acquire::http::Proxy \"http://172.17.0.2:3128\";
 _EOF_
 SCRIPT
 
@@ -28,9 +28,9 @@ Vagrant.configure(2) do |config|
     #docker.create_args = ["--cgroupns=host"]
     docker.create_args = ["--cgroupns=host", "--mount", "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"]
     # Uncomment to force arm64 for testing images on Intel
-    # docker.create_args = ["--platform=linux/arm64", "--cgroupns=host"]     
+    # docker.create_args = ["--platform=linux/arm64", "--cgroupns=host"]
     docker.ports = ["3128:3128"]
-  end  
+  end
 
   config.vm.boot_timeout = 600
   config.vm.synced_folder ".", "/vagrant_data"
@@ -47,22 +47,29 @@ Vagrant.configure(2) do |config|
 #         #-v '/vagrant_data:/vagrant' \
 #   end
 
-   config.vm.provision "set_proxy", type: "shell", inline: $script
-   config.vm.provision "pip", type: "shell", path: "./python3_pip_install.sh"
-   config.vm.provision "ansible", type: "shell", path: "./ansible_install.sh"
+  config.vm.provision "set_proxy", type: "shell", inline: $script
+  config.vm.provision "pip", type: "shell", path: "./python3_pip_install.sh"
+  config.vm.provision "ansible", type: "shell", path: "./ansible_install.sh"
 
-    config.vm.provision "ansible_local" do |ansible|
-      ### https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_local
-      ansible.provisioning_path = "/vagrant_data"
-      ansible.playbook = "playbook.yml"
-      ansible.install = false
-      ansible.version = "latest"
-      #ansible.install_mode = "default"
-      #ansible.install_mode = "pip"
-      #ansible.version = "2.2.1.0"
-#      ansible.pip_install_cmd = " \
-#        https_proxy=#{PROXY}:#{PROXY_PORT} curl -s https://bootstrap.pypa.io/get-pip.py \
-#        | sudo https_proxy=#{PROXY}:#{PROXY_PORT} python"
-    end
+  config.vm.provision "ansible_local" do |ansible|
+    ### https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_local
+    ansible.provisioning_path = "/vagrant_data"
+    ansible.playbook = "playbook.yml"
+    ansible.install = false
+    ansible.version = "latest"
+    #ansible.install_mode = "default"
+    #ansible.install_mode = "pip"
+    #ansible.version = "2.2.1.0"
+      #ansible.pip_install_cmd = " \
+      #  https_proxy=#{PROXY}:#{PROXY_PORT} curl -s https://bootstrap.pypa.io/get-pip.py \
+      #  | sudo https_proxy=#{PROXY}:#{PROXY_PORT} python"
+  end
 
+  config.vm.provision "ansible_local_b", type: "ansible_local" do |ansible|
+    ### https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_local
+    ansible.install = false
+    ansible.provisioning_path = "/vagrant_data/ansible"
+    ansible.playbook = "local.yml"
+    ansible.become = true
+  end
 end

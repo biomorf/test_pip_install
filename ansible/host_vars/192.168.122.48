@@ -1,0 +1,50 @@
+---
+branch: master
+
+ansible_cron_minute: "*/5"
+ssh_port: 22
+ssh_users: "user1 user2"
+
+# platform-specific
+ansible_python_interpreter: /usr/bin/python3
+microcode_amd_install: false
+microcode_intel_install: true
+
+# app defaults
+gui_editor: gvim
+terminal_emulator: terminator
+web_browser: flatpak run org.mozilla.firefox
+
+# application selection
+vlc: true
+authy: true
+autofs: true
+ulauncher: true
+syncthing: true
+todoist: true
+keepassxc: true
+chromium: true
+vivaldi: true
+firefox: true
+thunderbird: true
+audacity: true
+spotify: true
+darktable: true  # photo
+foliate: true  # e-book viewer
+glimpse: true  # ???
+libreoffice: false
+mattermost: true  # internal chat service for organisations and companies
+signal: true  # encrypted messaging service for instant messaging, voice, and video calls
+minecraft: false
+xonotic: false
+games: false
+lutris: true  # game manager
+steam: true  # game manager
+virtualbox: true
+vagrant: false  # hashicorp.com
+packer: false  # hashicorp.com
+terraform: false  # hashicorp.com  # provision and manage infrastructure in any cloud
+
+# desktop environment selection
+gnome: true
+mate: false

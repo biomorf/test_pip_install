@@ -1,0 +1,17 @@
+
+
+set nocompatible
+filetype plugin on
+nnoremap Q gqip
+nnoremap S :split<Return>
+set path+=**
+set wildmenu
+set spelllang=en_us
+if has('mouse')
+  set mouse=a
+endif
+set laststatus=2
+set ruler
+
+"syntax on # it's always on for known filetypes in ubuntu vim
+colorscheme default

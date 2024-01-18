@@ -1,0 +1,81 @@
+2022/06/02 17:31:05 INFO  : There was nothing to transfer
+2022/06/02 17:31:05 INFO  : 
+Transferred:   	          0 B / 0 B, -, 0 B/s, ETA -
+Checks:                 1 / 1, 100%
+Elapsed time:         2.0s
+
+2022/06/02 17:31:55 INFO  : There was nothing to transfer
+2022/06/02 17:31:55 INFO  : 
+Transferred:   	          0 B / 0 B, -, 0 B/s, ETA -
+Checks:                 1 / 1, 100%
+Elapsed time:         1.7s
+
+2022/06/02 17:33:58 INFO  : test.sh: Moved (server-side)
+2022/06/02 17:33:58 INFO  : a: Copied (new)
+2022/06/02 17:34:00 INFO  : test.sh: Copied (new)
+2022/06/02 17:34:00 INFO  : 
+Transferred:   	         26 B / 26 B, 100%, 8 B/s, ETA 0s
+Checks:                 2 / 2, 100%
+Renamed:                1
+Transferred:            2 / 2, 100%
+Elapsed time:         6.1s
+
+Usage:
+  rclone sync source:path dest:path [flags]
+
+Flags:
+      --create-empty-src-dirs   Create empty source dirs on destination after sync
+  -h, --help                    help for sync
+
+Use "rclone [command] --help" for more information about a command.
+Use "rclone help flags" for to see the global flags.
+Use "rclone help backends" for a list of supported services.
+Command sync needs 2 arguments minimum: you provided 0 non flag arguments: []
+2022/06/05 19:43:14 Failed to create file system for "": can't use empty string as a path
+2022/06/05 19:45:10 Failed to create file system for "": can't use empty string as a path
+2022/06/05 19:49:07 Failed to create file system for "": can't use empty string as a path
+2022/06/05 19:49:31 Failed to create file system for "": can't use empty string as a path
+2022/06/05 20:00:12 Failed to create file system for "": can't use empty string as a path
+2022/06/05 20:00:38 Failed to create file system for "": can't use empty string as a path
+2022/06/05 20:01:36 Failed to create file system for "": can't use empty string as a path
+2022/06/05 20:02:48 Failed to create file system for "": can't use empty string as a path
+2022/06/05 20:03:36 Failed to create file system for "": can't use empty string as a path
+2022/06/05 20:05:24 INFO  : log.log: Copied (replaced existing)
+2022/06/05 20:05:24 INFO  : 2000: Copied (new)
+2022/06/05 20:05:24 INFO  : 
+Transferred:   	    2.352 KiB / 2.352 KiB, 100%, 2.351 KiB/s, ETA 0s
+Checks:                10 / 10, 100%
+Transferred:            2 / 2, 100%
+Elapsed time:         3.0s
+
+2022/06/05 20:07:22 INFO  : There was nothing to transfer
+2022/06/05 20:07:22 INFO  : 
+Transferred:   	          0 B / 0 B, -, 0 B/s, ETA -
+Checks:                11 / 11, 100%
+Elapsed time:         3.1s
+
+2022/06/05 20:11:14 INFO  : 2010: Copied (new)
+2022/06/05 20:11:14 INFO  : 
+Transferred:   	          0 B / 0 B, -, 0 B/s, ETA -
+Checks:                11 / 11, 100%
+Transferred:            1 / 1, 100%
+Elapsed time:         3.9s
+
+2022/06/05 20:12:17 INFO  : 2000: Moved (server-side)
+2022/06/05 20:12:18 INFO  : 2000: Copied (new)
+2022/06/05 20:12:18 INFO  : 
+Transferred:   	          5 B / 5 B, 100%, 4 B/s, ETA 0s
+Checks:                13 / 13, 100%
+Renamed:                1
+Transferred:            1 / 1, 100%
+Elapsed time:         4.8s
+
+2022/06/05 20:19:24 INFO  : 2010: Moved (server-side)
+2022/06/05 20:19:25 INFO  : 2010: Copied (new)
+2022/06/05 20:19:25 INFO  : 
+Transferred:   	          5 B / 5 B, 100%, 4 B/s, ETA 0s
+Checks:                13 / 13, 100%
+Renamed:                1
+Transferred:            1 / 1, 100%
+Elapsed time:         8.0s
+

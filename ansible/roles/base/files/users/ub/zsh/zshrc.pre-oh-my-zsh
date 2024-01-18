@@ -1,0 +1,19 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zshhistfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory beep nomatch
+unsetopt autocd extendedglob notify
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/ub/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/2.2.19/gems/vagrant-2.2.19/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)

@@ -1,0 +1,296 @@
+- name: users | ub | create group
+  tags: groups,ub,users
+  group:
+    name: ub
+    state: present
+
+- name: users | ub | create group
+  tags: groups,ub,users
+  group:
+    name: ansible
+    state: present
+
+- name: users | ub | create user
+  tags: ub,sudo,users
+  user:
+    name: ub
+    group: ub
+    groups: adm,ansible,{{ sudo_group }}
+    state: present
+    comment: "Ubuntu User"
+    password: "{{ ub_passwd }}"
+    shell: /bin/bash
+
+- name: users | ub | ub | add sudoers file
+  tags: ub,settings,sudo,system,users
+  copy:
+    src: users/sudoers_ub
+    dest: /etc/sudoers.d/ub
+    owner: root
+    group: root
+    mode: 0440
+
+- name: users | ub | create .ssh directory
+  tags: dotfiles,ub,ssh,users
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: ub
+    group: ub
+    mode: 0700
+  with_items:
+    - { dir: '/home/ub/.ssh' }
+
+- name: users | ub | add public key
+  tags: dotfiles,ub,ssh,ssh-keys,users
+  authorized_key:
+    user: ub
+    key: "{{ item }}"
+  with_file:
+    - users/ub/ssh/ub@K53SV_id_ed25519.pub
+
+- name: users | ub | create config directories
+  tags: dotfiles,ub,tmux,users,vim,zsh
+  file:
+    path: /home/ub/{{ item.dir }}
+    state: directory
+    owner: ub
+    group: ub
+    mode: 0700
+  with_items:
+    - { dir: '.bash' }
+    - { dir: '.config' }
+    - { dir: '.config/htop' }
+    - { dir: '.config/mc' }
+    - { dir: '.tmux' }
+    - { dir: '.tmux/config' }
+    - { dir: '.tmux/plugins' }
+    - { dir: '.vim' }
+    - { dir: '.vim/colors' }
+    - { dir: '.vim/autoload' }
+    - { dir: '.vim/bundle' }
+    - { dir: '.vim/ftplugin' }
+    - { dir: '.zsh' }
+    - { dir: '.local/share/fonts/meslolgs' }
+
+- name: users | ub | copy tmux config (server version)
+  tags: dotfiles,users,ub,tmux,users,vim,zsh
+  copy:
+    src: users/ub/tmux/tmux.conf.server
+    dest: /home/ub/.tmux.conf
+    owner: ub
+    group: ub
+    mode: 0600
+  when: "'server' not in group_names"
+
+- name: users | ub | copy tmux config (workstation version)
+  tags: dotfiles,users,ub,tmux,users,vim,zsh
+  copy:
+    src: users/ub/tmux/tmux.conf.workstation
+    dest: /home/ub/.tmux.conf
+    owner: ub
+    group: ub
+    mode: 0600
+  when: "'server' in group_names"
+
+- name: users | ub | copy dotfiles
+  tags: dotfiles,users,ub,tmux,users,vim,zsh
+  copy:
+    src: users/ub/{{ item.src }}
+    dest: /home/ub/{{ item.dest }}
+    owner: ub
+    group: ub
+    mode: 0600
+  with_items:
+    - { src: 'bash/bashrc', dest: '.bashrc' }
+    - { src: 'bash/bash_profile', dest: '.bash_profile' }
+    - { src: 'bash/profile', dest: '.profile' }
+    - { src: 'zsh/zshrc', dest: '.zshrc' }
+    - { src: 'vim/vimrc', dest: '.vimrc' }
+    - { src: 'vim/vim/vimrc_highlight_trailing.vim', dest: '.vim/vimrc_highlight_trailing.vim' }
+    - { src: 'bash/bash/bash_aliases', dest: '.bash/bash_aliases' }
+    - { src: 'bash/bash/bash_prompt', dest: '.bash/bash_prompt' }
+    - { src: 'bash/bash/bash_functions', dest: '.bash/bash_functions' }
+    - { src: 'htop/htoprc', dest: '.config/htop/htoprc' }
+    - { src: 'inputrc', dest: '.inputrc' }
+    - { src: 'mc/mc.ini', dest: '.config/mc/ini' }
+    - { src: 'git/gitconfig', dest: '.gitconfig' }
+
+      ### error on subsequent runs
+      # ensure that 'git' and 'acl' packages is installed
+      #- name: users | ub | clone tmux-completion plugin repository
+      #  tags: dotfiles,ub,users,tmux
+      #  become: yes
+      #  become_method: sudo
+      #  become_user: ub
+      #    #vars:
+      #    #  allow_world_readable_tmpfiles: true
+      #  git:
+      #    repo: https://github.com/srsudar/tmux-completion.git
+      #    dest: /home/ub/.tmux/plugins/completion
+      #    force: yes
+      #    clone: yes
+      #    update: yes
+      #  notify: update_tmux_plugin_perms_ub
+      #
+      #- name: users | ub | clone tmux-continuum plugin repository
+      #  tags: dotfiles,ub,users,tmux
+      #  become_user: ub
+      #  git:
+      #    repo: https://github.com/tmux-plugins/tmux-continuum
+      #    dest: /home/ub/.tmux/plugins/continuum
+      #    force: yes
+      #    clone: yes
+      #    update: yes
+      #  notify: update_tmux_plugin_perms_ub
+      #
+      #- name: users | ub | clone tmux-resurrect plugin repository
+      #  tags: dotfiles,ub,users,tmux
+      #  become_user: ub
+      #  git:
+      #    repo: https://github.com/tmux-plugins/tmux-resurrect
+      #    dest: /home/ub/.tmux/plugins/resurrect
+      #    force: yes
+      #    clone: yes
+      #    update: yes
+      #  notify: update_tmux_plugin_perms_ub
+
+
+- name: users | ub | create fonts directories
+  tags: dotfiles,tmux,users,vim,zsh,fonts,ub
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - { dir: '/usr/local/share/fonts/meslolgs' }
+
+- name: users | ub | copy powerline10 fonts files
+  tags: dotfiles,users,vim,fonts,ub
+  copy:
+    src: users/ub/fonts/meslolgs/{{ item.src }}
+    #dest: /home/ub/.local/share/fonts/meslolgs/{{ item.src }}
+    #owner: ub
+    #group: ub
+    dest: /usr/local/share/fonts/meslolgs/{{ item.src }}
+    mode: 0644
+  with_items:
+    - { src: 'MesloLGS NF Bold Italic.ttf' }
+    - { src: 'MesloLGS NF Bold.ttf' }
+    - { src: 'MesloLGS NF Italic.ttf' }
+    - { src: 'MesloLGS NF Regular.ttf' }
+
+      #- name: users | ub | update fonts cache
+      #  tags: dotfiles,users,vim,fonts,ub
+      #    #become_user: ub
+      #  become_user: root
+      #  command: fc-cache -f -v -r
+
+  # TODO do it after install
+  #- name: users | ub | install vim plugins
+  #  tags: dotfiles,ub,users,vim
+  #  command: vim +PluginInstall +qall
+
+      #- name: users | ub | checkout powerlevel10k zsh theme
+      #  tags: git,users,ohmy,ub
+      #  become_user: ub
+      #  git:
+      #    repo: "{{ item.repo }}"
+      #    dest: "{{ item.dest }}"
+      #    force: yes
+      #    clone: yes
+      #    update: yes
+      #    depth: 1
+      #  with_items:
+      #    - { repo: 'https://github.com/romkatv/powerlevel10k.git', dest: '/home/ub/.oh-my-zsh/custom/themes/powerlevel10k' }
+
+      #- name: users | ub | install oh-my-zsh
+      #  tags: git,users,ohmy,ub
+      #  become_user: ub
+      #  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      #  ignore_errors: true
+      #  register: command_result
+      #  failed_when: "'The $ZSH folder already exists' in command_result.stderr"
+
+- name: users | ub | copy individual zsh config files
+  tags: dotfiles,ub,users,ohmyzsh
+  copy:
+    src: users/ub/zsh/{{ item.src }}
+    dest: /home/ub/{{ item.dest }}
+    owner: ub
+    group: ub
+    mode: 0600
+  with_items:
+    - { src: 'p10k.zsh', dest: '.p10k.zsh' }
+    - { src: 'zshrc', dest: '.zshrc' }
+  #    - { src: 'zsh/aliases.zsh' }
+  #    - { src: 'zsh/bindkey.zsh' }
+  #    - { src: 'zsh/completion.zsh' }
+  #    - { src: 'zsh/exports.zsh' }
+  #    - { src: 'zsh/functions.zsh' }
+  #    - { src: 'zsh/history.zsh' }
+  #    - { src: 'zsh/path.zsh' }
+  #    - { src: 'zsh/plugins.zsh' }
+  #    - { src: 'zsh/prompt.zsh' }
+  #    - { src: 'zsh/setopt.zsh' }
+  #    - { src: 'zsh/theming.zsh' }
+
+
+- name: users | ub | copy vim ftype files
+  tags: dotfiles,ub,users,vim
+  copy:
+    src: users/ub/vim/vim/ftplugin/{{ item.src }}
+    dest: /home/ub/.vim/ftplugin/{{ item.src }}
+    owner: ub
+    group: ub
+    mode: 0600
+  with_items:
+    - { src: 'cmake.vim' }
+    - { src: 'cpp.vim' }
+    - { src: 'html.vim' }
+    - { src: 'perl.vim' }
+    - { src: 'python.vim' }
+    - { src: 'ruby.vim' }
+    - { src: 'sql.vim' }
+    - { src: 'xml.vim' }
+    - { src: 'nasm.vim' }
+    - { src: 'sh.vim' }
+    - { src: 'text.vim' }
+
+- name: users | ub | copy vim color files
+  tags: dotfiles,ub,users,vim
+  copy:
+    src: users/ub/vim/vim/colors/{{ item.src }}
+    dest: /home/ub/.vim/colors/{{ item.src }}
+    owner: ub
+    group: ub
+    mode: 0600
+  with_items:
+    - { src: 'bubblegum-256-dark.vim' }
+    - { src: 'darktango.vim' }
+    - { src: 'jellybeans.vim' }
+    - { src: 'xoria256.vim' }
+    - { src: 'zenburn.vim' }
+
+
+      ### error on subsequent runs
+      # error when ib vagrant
+      #- name: users | ub | checkout git repositories
+      #  tags: git,users,vim,ub
+      #  become_user: ub
+      #  git:
+      #    repo: "{{ item.repo }}"
+      #    dest: "{{ item.dest }}"
+      #    force: yes
+      #    clone: yes
+      #    update: yes
+      #  with_items:
+      #    - { repo: 'https://github.com/VundleVim/Vundle.vim.git', dest: '/home/ub/.vim/bundle/Vundle.vim' }
+      #      #installed with Vundle instead...
+      #    #- { repo: 'https://github.com/rafi/awesome-vim-colorschemes.git', dest: '/home/ub/.vim/bundle/awesome-vim-colorschemes.git' }
+      #  notify:
+      #    - update_vim_bundle_perms_ub
+      #    - update_vim_vundle_plugins
+

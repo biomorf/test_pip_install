@@ -1,0 +1,34 @@
+DONT
+
+#!/bin/bash
+# Autobus folder backup
+
+# Set actual remote folder and local temp folder
+#_remote="/home/ub/share/google/rclone-gdrive-biomorf2017/Autobus/"
+_remote="/home/ub/test/avtobustest/remote/"
+#_local="/home/ub/share/local/rclone-gdrive-biomorf2017/Autobus/"
+_local="/home/ub/test/avtobustest/local/"
+#_temp="/home/ub/share/local/rclone-gdrive-biomorf2017/temp/"
+_temp="/home/ub/test/avtobustest/temp/"
+
+# Get actual date
+_date=$(date +%y-%m-%d)
+
+# Set local folder
+#mkdir -p "${local}${_date}"
+#_local="${local}${_date}"
+
+# Rsync actual remote folder into local temp dir
+rsync -az --progress "${_remote}" "${_temp}"
+
+# Delete duplicates in local folder
+#fdupes -r "${_temp}" "${_local}"
+fdupes --recurse --delete --noprompt "${_temp}" "${_local}" >> $_date.log
+
+# Move temp to local 
+cd "${_local}"
+#_local="${_local}${_date}"
+mkdir -p "${_date}" && cd "${_date}"
+rsync -a --progress "${_temp}" "${_local}${_date}"
+rm -rf ${_temp}*
+

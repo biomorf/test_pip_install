@@ -1,0 +1,82 @@
+---
+- name: apt_update
+  apt: update_cache=yes
+
+- name: restart_sshd
+  service:
+    name: "{{ openssh_service }}"
+    state: restarted
+
+- name: update_tmux_plugin_perms
+  file:
+    path: /home/jay/.tmux/plugins
+    owner: jay
+    group: jay
+    recurse: true
+
+- name: update_tmux_plugin_perms_ub
+  file:
+    path: /home/ub/.tmux/plugins
+    owner: ub
+    group: ub
+    recurse: true
+
+#- name: mark_continuum_plugin_local_repo_safe
+#  become: true
+#  become_user: jay
+#  command: git config --global --add safe.directory /home/jay/.tmux/plugins/continuum
+
+- name: update_vim_bundle_perms
+  file:
+    path: /home/jay/.vim/bundle
+    owner: jay
+    group: jay
+    recurse: true
+
+- name: update_vim_bundle_perms_ub
+  file:
+    path: /home/ub/.vim/bundle
+    owner: ub
+    group: ub
+    recurse: true
+
+- name: update_vim_vundle_plugins
+  tags: dotfiles,ub,users,vim
+  become_user: ub
+  command: vim +PluginInstall +qall
+
+
+    #- name: adding existing user '{{ user }}' to group sudo
+    #  user:
+    #    name: '{{ user }}'
+    #    groups: sudo
+    #    append: yes
+
+- name: add_user_ub_to_kvm_group
+  tags: dev,virtualization,packages,qemu
+  user:
+    name: ub
+    groups: kvm
+    append: yes
+
+- name: add_user_ub_to_docker_group
+  tags: dev,virtualization,packages,docker
+  user:
+    name: ub
+    groups: docker
+    append: yes
+
+- name: docker_service_restart
+  tags: dev,virtualization,packages,docker
+  ansible.builtin.service:
+    name: docker
+    enabled: yes
+    state: started
+
+      #- name: docker_service_restart
+      #  tags: dev,virtualization,packages,docker
+      #  #name: software | syncthing | start and enable syncthing
+      #  command: "{{ item }}"
+      #  with_items:
+      #    - systemctl enable docker
+      #    - systemctl restart docker
