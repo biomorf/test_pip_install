@@ -1,0 +1,58 @@
+- name: users | simone | create group
+  tags: groups,simone,users
+  group:
+    name: simone
+    state: present
+
+- name: users | simone | create group
+  tags: groups,simone,users
+  group:
+    name: ansible
+    state: present
+
+- name: users | ub | create user
+  tags: ub,sudo,users
+  ansible.builtin.user:
+    name: simone
+    group: simone
+    groups: adm,ansible,{{ sudo_group }}
+    state: present
+    comment: "Ubuntu User"
+    password: "{{ simone_passwd }}"
+    shell: /bin/bash
+
+- name: users | simone | add github key
+  tags: settings,simone,sudo,system,users
+  copy:
+    src: users/simone/ssh/id_ed25519
+    dest: /home/simone/.ssh/id_ed25519
+    owner: simone
+    group: simone
+    mode: 0400
+
+- name: users | simone | add github key
+  tags: settings,simone,sudo,system,users
+  copy:
+    src: users/simone/ssh/id_ed25519.pub
+    dest: /home/simone/.ssh/id_ed25519.pub
+    owner: simone
+    group: simone
+    mode: 0444
+
+- name: users | simone | add public key
+  tags: dotfiles,simone,ssh,ssh-keys,users
+  authorized_key:
+    user: simone
+    key: "{{ item }}"
+  with_file:
+    #- users/simone/ssh/simone_id_ed25519.pub
+    - users/simone/ssh/ub@K53SV_id_ed25519.pub
+
+- name: users | simone | add sudoers file
+  tags: settings,simone,sudo,system,users
+  copy:
+    src: users/sudoers_simone
+    dest: /etc/sudoers.d/simone
+    owner: root
+    group: root
+    mode: 0440

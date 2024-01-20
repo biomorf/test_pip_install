@@ -68,7 +68,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "ansible_local_b", type: "ansible_local" do |ansible|
     ### https://developer.hashicorp.com/vagrant/docs/provisioning/ansible_local
     ansible.install = false
-    ansible.provisioning_path = "/vagrant_data/ansible"
+    ansible.provisioning_path = "/vagrant_data"
     ansible.playbook = "local.yml"
     ansible.become = true
   end

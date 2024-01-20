@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # options
-ANSIBLEUSER="<ansible-user-name>"
+ANSIBLEUSER="simone"
 BRANCH="{{ branch | default('master') }}"
 LOGFILE="/var/log/ansible.log"
 REPO="<https://url-to-git-server/ansible.git>"

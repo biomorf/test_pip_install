@@ -1,3 +1,11 @@
+- name: system setup | utilities | install distribution specific packages (debian family) locales
+  tags: packages,system,settings
+  package:
+    state: latest
+    name:
+      - locales
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
+
 - name: system setup | locale | add en_US
   tags: locale,system,setup
   locale_gen:
