@@ -26,8 +26,8 @@
   file:
     path: "{{ item.dir }}"
     state: directory
-    owner: ub
-    group: ub
+    owner: simone
+    group: simone
     mode: 0700
   with_items:
     - { dir: '/home/simone/.ssh' }
