@@ -21,6 +21,17 @@
     password: "{{ simone_passwd }}"
     shell: /bin/bash
 
+- name: users | simone | create .ssh directory
+  tags: dotfiles,simone,ssh,users
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: ub
+    group: ub
+    mode: 0700
+  with_items:
+    - { dir: '/home/simone/.ssh' }
+
 - name: users | simone | add github key
   tags: settings,simone,sudo,system,users
   copy:
