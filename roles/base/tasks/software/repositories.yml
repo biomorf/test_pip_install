@@ -27,7 +27,7 @@
   tags: packages,system,settings
   package:
     name:
-      - aptitude
+#      - aptitude
       - software-properties-common
     state: latest
   when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]

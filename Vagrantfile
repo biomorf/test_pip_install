@@ -34,6 +34,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.boot_timeout = 600
   config.vm.synced_folder ".", "/vagrant_data"
+  config.vm.synced_folder "../vault", "/vault"
 
   # Install Docker and pull an image
 #   config.vm.provision :docker do |d|
@@ -70,6 +71,9 @@ Vagrant.configure(2) do |config|
     ansible.install = false
     ansible.provisioning_path = "/vagrant_data"
     ansible.playbook = "local.yml"
+    #ansible.raw_arguments  = "--ask-vault-pass"
+    #TODO test
+    ansible.vault_password_file = "/vault/vault"
     ansible.become = true
   end
 end
