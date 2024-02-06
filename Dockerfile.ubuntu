@@ -3,8 +3,8 @@ LABEL MAINTAINER="John Rofrano <rofrano@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo 'Acquire::http::Proxy "http://10.0.2.2:8000";' \
-  | tee  /etc/apt/apt.conf.d/01deb-proxy
+#RUN echo 'Acquire::http::Proxy "http://10.0.2.2:8000";' \
+#  | tee  /etc/apt/apt.conf.d/01deb-proxy
 
 # Install packages needed for SSH and interactive OS
 RUN apt-get update && \

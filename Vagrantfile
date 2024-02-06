@@ -4,7 +4,7 @@
 
 $script = <<-SCRIPT
 sudo cat > /etc/apt/apt.conf.d/01deb-proxy <<-_EOF_
-	Acquire::http::Proxy \"http://10.0.2.2:8000\";
+	#Acquire::http::Proxy \"http://10.0.2.2:8000\";
 	#Acquire::http::Proxy \"http://172.17.0.2:3128\";
 _EOF_
 SCRIPT
