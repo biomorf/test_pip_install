@@ -34,7 +34,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.boot_timeout = 600
   config.vm.synced_folder ".", "/vagrant_data"
-  config.vm.synced_folder "../vault", "/vault"
+  config.vm.synced_folder "./vault", "/vault"
 
   # Install Docker and pull an image
 #   config.vm.provision :docker do |d|

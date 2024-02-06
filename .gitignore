@@ -4,3 +4,6 @@ Thumbs.db
 
 # Vagrant metadata folder
 .vagrant/
+
+#!vault/
+#vault/*
